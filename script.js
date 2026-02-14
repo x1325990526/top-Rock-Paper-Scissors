@@ -1,7 +1,8 @@
- console.log(getComputerChoice());
  function getComputerChoice(){
-    let n = Math.random();
-    if(n<0.33) return "rock";
-    if(n>=0.33 && n<0.66) return "paper";
-    if(n>=0.66) return "scissors";
+    const choices = ["rock","paper","scissors"];
+    //Math.floor 向下取整
+    //Math.random * choices.length 返回 0-2.999...之间的数
+    return choices[Math.floor(Math.random() * choices.length)];
  }
+
+console.log(getComputerChoice());
