@@ -16,35 +16,38 @@ function getHumanChoice(){
 
 function playRound(humanChoice, computerChoice) {
 
-  humanChoice = humanChoice.toLowerCase();
+    if(!humanChoice){
+        console.log("You cancelled the input!")
+        return "Invalid input";
+    }
 
-  if (!["paper","scissors","rock"].includes(humanChoice)){
-    
-    console.log("Please input rock or paper or scissors");
-    return "Invalid input";
-  } 
+    humanChoice = humanChoice.toLowerCase();
 
-  if(humanChoice === "rock" && computerChoice === "scissors" ||
-     humanChoice === "scissors" && computerChoice === "paper" || 
-     humanChoice === "paper" && computerChoice === "rock"){
+    if (!["paper","scissors","rock"].includes(humanChoice)){
 
-    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-    return "win";
+        console.log("Please input rock or paper or scissors");
+        return "Invalid input";
+    } 
 
-  }else if(humanChoice === computerChoice){
+    if((humanChoice === "rock" && computerChoice === "scissors") ||
+       (humanChoice === "scissors" && computerChoice === "paper") || 
+       (humanChoice === "paper" && computerChoice === "rock")){
 
-     console.log(`It's a tie! ${humanChoice} tied ${computerChoice}`);
-     return "tie"
-     
-  }else{
+        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        return "win";
 
-    console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-    return "lose";
-  }
+    }else if(humanChoice === computerChoice){
+
+        console.log(`It's a tie! ${humanChoice} tied ${computerChoice}`);
+        return "tie";
+        
+    }else{
+
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        return "lose";
+    }
 
 }
-
-
 
 
 function playGame(){
@@ -57,6 +60,13 @@ function playGame(){
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
         const result = playRound(humanSelection, computerSelection);
+
+        //用户非法输入，此轮作废，索引回退
+        if(result === "Invalid input"){
+            console("Invalid input");
+            i--;
+            continue;
+        }
         if(result === "win")humanScore++;
         if(result === "lose")computerScore++;
         
@@ -64,12 +74,12 @@ function playGame(){
     }
 
     if(humanScore > computerScore){
-        console.log(`Final result: you win!Your scores ${humanScore} bigger than computer scores ${computerScore}`);
+        console.log(`Final result: You win!(You ${humanScore} : ${computerScore} Computer)`);
     }else if(humanScore < computerScore){
-        console.log(`Final result: you lose!Your scores ${humanScore} smaller than Computer scores ${computerScore}`);
+        console.log(`Final result: You lose!(You ${humanScore} : ${computerScore} Computer)`);
 
     }else{
-        console.log(`Final result: tie!Your scores: ${humanScore} equl computer scores ${computerScore}`);
+        console.log(`Final result: Tie!(You ${humanScore} : ${computerScore} Computer)`);
         
     }
 
