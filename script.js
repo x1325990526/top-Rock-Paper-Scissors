@@ -16,13 +16,18 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-  humanChoice.toLowerCase();
-  if (humanChoice != "rock" && humanChoice != "scissors" && humanChoice != "paper"){
+
+  humanChoice = humanChoice.toLowerCase();
+
+  if (!["paper","scissors","rock"].includes(humanChoice)){
+    
     console.log("Please input rock or paper or scissors");
     return 1;
   } 
 
-  if(humanChoice === "rock" && computerChoice === "scissors" || humanChoice === "scissors" && computerChoice === "paper" || humanChoice === "paper" && computerChoice === "rock"){
+  if(humanChoice === "rock" && computerChoice === "scissors" ||
+     humanChoice === "scissors" && computerChoice === "paper" || 
+     humanChoice === "paper" && computerChoice === "rock"){
 
     humanScore++;
     console.log(`You win! ${humanChoice} beats ${computerChoice}`);
