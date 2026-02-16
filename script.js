@@ -6,3 +6,10 @@
  }
 
 console.log(getComputerChoice());
+
+function getHumanChoice(){
+
+    return prompt("input rock or paper or scissors","rock");
+}
+
+console.log(getHumanChoice());
