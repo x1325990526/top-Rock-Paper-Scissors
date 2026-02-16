@@ -63,10 +63,11 @@ function playGame(){
 
         //用户非法输入，此轮作废，索引回退
         if(result === "Invalid input"){
-            console("Invalid input");
+            console.log("Invalid input");
             i--;
             continue;
         }
+        
         if(result === "win")humanScore++;
         if(result === "lose")computerScore++;
         
