@@ -51,37 +51,32 @@ function playRound(humanChoice, computerChoice) {
 
 
 function playGame(){
-    const roundNumber = 5;
-    let humanScore = 0;
-    let computerScore = 0;
+    // const roundNumber = 5;
+    // let humanScore = 0;
+    // let computerScore = 0;
 
-    for(let i=0;i<roundNumber;i++){
+    // for(let i=0;i<roundNumber;i++){
 
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        const result = playRound(humanSelection, computerSelection);
+    //     const humanSelection = getHumanChoice();
+    //     const computerSelection = getComputerChoice();
+    //     const result = playRound(humanSelection, computerSelection);
 
-        //用户非法输入，此轮作废，索引回退
-        if(result === "Invalid input"){
-            i--;
-            continue;
-        }
+    //     //用户非法输入，此轮作废，索引回退
+    //     if(result === "Invalid input"){
+    //         i--;
+    //         continue;
+    //     }
 
-        if(result === "win")humanScore++;
-        if(result === "lose")computerScore++;
-        
+    //     if(result === "win")humanScore++;
+    //     if(result === "lose")computerScore++;
+    
 
-    }
+    rBtn = document.createElement("button");   
+    pBtn = document.createElement("button");   
+    sBtn = document.createElement("button");   
+    
 
-    if(humanScore > computerScore){
-        console.log(`Final result: You win!(You ${humanScore} : ${computerScore} Computer)`);
-    }else if(humanScore < computerScore){
-        console.log(`Final result: You lose!(You ${humanScore} : ${computerScore} Computer)`);
 
-    }else{
-        console.log(`Final result: Tie!(You ${humanScore} : ${computerScore} Computer)`);
-        
-    }
 
 }
 
