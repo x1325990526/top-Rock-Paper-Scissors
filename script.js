@@ -33,17 +33,14 @@ function playRound(humanChoice, computerChoice) {
        (humanChoice === "scissors" && computerChoice === "paper") || 
        (humanChoice === "paper" && computerChoice === "rock")){
 
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
         return "win";
 
     }else if(humanChoice === computerChoice){
 
-        console.log(`It's a tie! ${humanChoice} tied ${computerChoice}`);
         return "tie";
         
     }else{
 
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
         return "lose";
     }
 
@@ -51,29 +48,71 @@ function playRound(humanChoice, computerChoice) {
 
 
 function playGame(){
-    // const roundNumber = 5;
-    // let humanScore = 0;
-    // let computerScore = 0;
-
-    // for(let i=0;i<roundNumber;i++){
-
-    //     const humanSelection = getHumanChoice();
-    //     const computerSelection = getComputerChoice();
-    //     const result = playRound(humanSelection, computerSelection);
-
-    //     //用户非法输入，此轮作废，索引回退
-    //     if(result === "Invalid input"){
-    //         i--;
-    //         continue;
-    //     }
-
-    //     if(result === "win")humanScore++;
-    //     if(result === "lose")computerScore++;
+    let humanScore = 0;
+    let computerScore = 0;
     
+    const display = document.querySelector("p");
 
-    rBtn = document.createElement("button");   
-    pBtn = document.createElement("button");   
-    sBtn = document.createElement("button");   
+    const selections = document.querySelector("#selections");
+
+    
+        selections.addEventListener("click",(event) =>{
+
+
+            let humanSelection = event.target.id;
+            let computerSelection = getComputerChoice();
+
+            const feedback = document.createElement("p");            
+
+            const final = document.createElement("p");
+
+            const result = playRound(humanSelection, computerSelection);
+
+
+
+            if(result === "tie"){
+
+            feedback.textContent = `It's a tie! ${humanSelection} tied ${computerSelection}`;
+            }
+            
+            if(result === "win"){
+
+                humanScore++;
+                feedback.textContent = `You win! ${humanSelection} beats ${computerSelection}`;
+                
+            }
+            
+            if(result === "lose"){
+
+                feedback.textContent = `You lose! ${computerSelection} beats ${humanSelection}`;
+
+                computerScore++;
+            }
+
+            
+            display.textContent = `Human vs Computer : ${humanScore} : ${computerScore}`;
+            display.appendChild(feedback);
+
+            if(humanScore >= 5 || computerScore >= 5){
+                if(humanScore > computerScore){
+
+                    final.textContent = `Final result: You win!(You ${humanScore} : ${computerScore} Computer)`;
+
+                }else if(humanScore < computerScore){
+
+                    final.textContent =`Final result: You lose!(You ${humanScore} : ${computerScore} Computer)`;
+                }else{
+
+                    final.textContent = `Final result: Tie!(You ${humanScore} : ${computerScore} Computer)`;
+                }
+
+                display.appendChild(final);
+                humanScore = 0;
+                computerScore = 0;
+                
+            }
+        });
+
     
 
 
